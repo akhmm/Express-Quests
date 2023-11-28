@@ -68,7 +68,7 @@ describe("POST /api/movies", () => {
 
       const response = await request(app)
         .post("/api/movies")
-        .send("movieWithMissingProps");
+        .send(movieWithMissingProps);
 
       expect(response.status).toEqual(500);
     
