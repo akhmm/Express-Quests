@@ -42,6 +42,7 @@ describe("POST /api/movies", () => {
     expect(response.status).toEqual(201);
     expect(response.body).toHaveProperty("id");
     expect(typeof response.body.id).toBe("number");
+    
 
     const [result] = await database.query(
       "SELECT * FROM movies WHERE id = ?",
@@ -50,6 +51,15 @@ describe("POST /api/movies", () => {
     const [movieInDatabase] = result;
     expect(movieInDatabase).toHaveProperty("id");
     expect(movieInDatabase).toHaveProperty("title");
+    expect(movieInDatabase).toHaveProperty("director");
+    expect(movieInDatabase).toHaveProperty("year");
+    expect(movieInDatabase).toHaveProperty("color");
+    expect(movieInDatabase).toHaveProperty("duration");
+    expect(typeof movieInDatabase.title).toBe("string")
+    expect(typeof movieInDatabase.director).toBe("string")
+    expect(typeof movieInDatabase.year).toBe("string")
+    expect(typeof movieInDatabase.color).toBe("string")
+    expect(typeof movieInDatabase.duration).toBe("number")
     expect(movieInDatabase.title).toStrictEqual(newMovie.title);
   });
 
