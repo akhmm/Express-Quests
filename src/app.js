@@ -18,6 +18,7 @@ app.post("/api/users", userControllers.postUser);
 
 //PUT (update)
 app.put("/api/movies/:id", movieControllers.updateMovie);
+app.put("/api/users/:id", userControllers.updateUser);
 
 
 module.exports = app;
