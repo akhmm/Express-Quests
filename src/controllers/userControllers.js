@@ -1,5 +1,5 @@
 const userDatabase = require("../../database");
-afterAll(() => userDatabase.end());
+//afterAll(() => userDatabase.end());
 
 const getUsers = (req, res) => {
     userDatabase
@@ -31,11 +31,27 @@ const getUserById = (req, res) => {
             console.error(err);
             res.sendStatus(500);
         })
-
 }
+
+const postUser = (req, res) => {
+    const { firstname, lastname, email, city, language } = req.body;
+    userDatabase
+    .query("INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
+    [firstname, lastname, email, city, language]
+    )
+    .then(([result]) => {
+        res.status(201).send({id: result.insertId});
+    })
+    .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+    })
+}
+
 module.exports = {
     getUsers,
-    getUserById
+    getUserById,
+    postUser,
   };
   
 
