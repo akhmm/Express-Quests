@@ -34,11 +34,11 @@ describe("GET /api/users/:id", () => {
 describe("POST /api/users", () => {
   it("should return created user", async() =>{
     const newUser = {
-      "firstname": "bob",
-      "lastname": "BOBBY",
-      "email": `${crypto.randomUUID()}@wild.co`,
-      "city": "Paris",
-      "language": "anglais"
+      firstname: "bob",
+      lastname: "BOBBY",
+      email: `${crypto.randomUUID()}@wild.co`,
+      city: "Paris",
+      language: "anglais"
     }
     const response = await request(app).post("/api/users").send(newUser);
     expect(response.status).toEqual(201);
