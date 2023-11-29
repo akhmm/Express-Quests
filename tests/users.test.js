@@ -169,4 +169,8 @@ describe("DELETE /api/users/:id", () => {
     const responseDelete = await request(app).get(`/api/users/${id}`)
     expect(responseDelete.status).toEqual(404);
   })
+  it("should return error", async() => {
+    const response = await request(app).delete("/api/users/0")
+    expect(response.status).toEqual(404);
+  })
 })
