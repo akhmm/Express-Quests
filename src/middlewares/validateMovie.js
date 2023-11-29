@@ -5,7 +5,10 @@ const validateMovie = (req, res, next) => {
 
     if(title == null){
         errors.push({field: "title", message: "tThis field is required" });
-    }
+    }else if (title.length >= 255) {
+        errors.push({ field: "title", message: "Should contain less than 255 characters" });
+      }
+      
     if(director == null){
         errors.push({field: "director", message: "tThis field is required" });
     }
